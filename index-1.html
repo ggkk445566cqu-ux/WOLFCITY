@@ -1,0 +1,410 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WOLF CITY | الشرطة</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0d0912;
+  --panel:#19121f;
+  --purple:#7626a6;
+  --light:#c99be8;
+  --border:#43284f;
+  --text:#f3edf7;
+  --muted:#aaa0b2;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  padding:18px;
+  color:var(--text);
+  background:radial-gradient(ellipse at top,#291535,transparent 50%),var(--bg);
+  font-family:'Cairo',Tahoma,sans-serif;
+  animation:fadeIn .7s ease;
+}
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+header{
+  text-align:center;
+  padding:28px 5px;
+}
+.logo-image{
+  width:88px;
+  height:88px;
+  object-fit:contain;
+  filter:drop-shadow(0 0 12px #9b52c566);
+  animation:float 3s ease-in-out infinite;
+}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+}
+h1{
+  font-size:38px;
+  color:var(--light);
+  letter-spacing:3px;
+  margin:8px 0 0;
+  font-weight:600;
+}
+.subtitle{
+  font-size:11px;
+  letter-spacing:3px;
+  color:#bca2cb;
+}
+.header-arabic{
+  font-family:'Amiri',serif;
+  font-size:29px;
+  font-weight:400;
+  color:#ded5e4;
+  margin-top:18px;
+}
+.header-line{
+  height:2px;
+  width:150px;
+  margin:12px auto;
+  background:linear-gradient(90deg,transparent,#75458b,transparent);
+}
+.container{max-width:650px;margin:auto}
+.card{
+  position:relative;
+  background:linear-gradient(145deg,#211628,#140e19);
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:21px;
+  margin-bottom:19px;
+  box-shadow:0 12px 30px #0003;
+  animation:slideIn .6s ease both;
+  transition:border-color .25s;
+}
+.card:hover{border-color:#78508a}
+@keyframes slideIn{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:translateY(0)}
+}
+h2{
+  font-family:'Amiri',serif;
+  font-size:25px;
+  font-weight:400;
+  color:#d6b8e5;
+  border-right:2px solid #8754a0;
+  padding-right:12px;
+  margin-top:3px;
+}
+.description{
+  font-size:12px;
+  line-height:2;
+  color:var(--muted);
+}
+.icons{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin:22px 0;
+}
+.icon{
+  min-width:0;
+  cursor:pointer;
+  text-align:center;
+  padding:20px 5px;
+  border:1px solid #42294d;
+  border-radius:12px;
+  background:#211629;
+  transition:all .25s ease;
+  animation:iconIn .5s ease both;
+}
+.icon:nth-child(2){animation-delay:.1s}
+.icon:nth-child(3){animation-delay:.2s}
+@keyframes iconIn{
+  from{opacity:0;transform:scale(.94)}
+  to{opacity:1;transform:scale(1)}
+}
+.icon:hover{
+  background:#302039;
+  border-color:#9d70b1;
+  transform:translateY(-3px);
+}
+.icon.selected{
+  background:#392343;
+  border-color:#c99be8;
+  box-shadow:0 0 15px #a855f722;
+}
+.custom-emoji{
+  display:block;
+  width:42px;
+  height:42px;
+  object-fit:contain;
+  margin:0 auto 12px;
+  transition:transform .25s;
+}
+.icon:hover .custom-emoji{transform:scale(1.08)}
+.icon small{
+  font-family:'Cairo',sans-serif;
+  font-size:12px;
+  font-weight:500;
+  color:#e0d1e8;
+}
+label{
+  display:block;
+  margin:16px 0 7px;
+  font-size:13px;
+  font-weight:500;
+  color:#e0d5e7;
+}
+input,select,textarea{
+  width:100%;
+  padding:13px;
+  border-radius:9px;
+  background:#100b15;
+  border:1px solid #45304c;
+  color:white;
+  font-family:'Cairo',sans-serif;
+  font-size:13px;
+  transition:border-color .2s,box-shadow .2s;
+}
+input:focus,select:focus,textarea:focus{
+  outline:none;
+  border-color:#a875c1;
+  box-shadow:0 0 0 2px #9b52c522;
+}
+select option{background:#19121f}
+input[type="checkbox"]{
+  width:auto;
+  accent-color:#995db8;
+  vertical-align:middle;
+}
+textarea{min-height:90px;resize:vertical}
+button{
+  width:100%;
+  padding:13px;
+  margin-top:18px;
+  border:1px solid #87549c;
+  border-radius:9px;
+  background:linear-gradient(100deg,#602180,#7d369a);
+  color:white;
+  font-family:'Cairo',sans-serif;
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
+  transition:all .2s ease;
+}
+button:hover{
+  filter:brightness(1.12);
+  box-shadow:0 5px 20px #702d8833;
+  transform:translateY(-2px);
+}
+button:active{transform:scale(.98)}
+#result{
+  display:none;
+  margin-top:15px;
+  padding:15px;
+  background:#25172d;
+  border:1px solid #68447a;
+  border-radius:10px;
+  overflow-wrap:anywhere;
+  line-height:1.9;
+}
+#result.show{display:block;animation:fadeIn .4s ease}
+footer{
+  text-align:center;
+  color:#8f8198;
+  font-family:'Amiri',serif;
+  font-size:16px;
+  padding:20px 5px;
+}
+@media(max-width:360px){
+  body{padding:11px}
+  .card{padding:15px}
+  .icons{gap:7px}
+  .icon{padding:15px 3px}
+  .custom-emoji{width:35px;height:35px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation:none!important;
+    transition:none!important;
+    scroll-behavior:auto!important;
+  }
+}
+</style>
+</head>
+
+<body>
+<header>
+  <img
+    src="https://www.dropbox.com/scl/fi/brajuaji53kbcd9kuhl93/1792638119405.png?rlkey=u83upkfbw9y5e3gsjmiwxepwm&raw=1"
+    alt="شعار وولف سيتي"
+    class="logo-image"
+  >
+  <h1>WOLF CITY</h1>
+  <div class="subtitle">ROLEPLAY • LOS ANGELES</div>
+  <div class="header-line"></div>
+  <div class="header-arabic">إدارة شرطة لوس أنجلوس</div>
+</header>
+
+<main class="container">
+
+<section class="card">
+  <h2>أقسام الشرطة</h2>
+  <p class="description">اختر القسم الذي ترغب بالاطلاع عليه</p>
+
+  <div class="icons" id="icons">
+
+    <div class="icon" tabindex="0" role="button" aria-pressed="false">
+      <img
+        src="https://www.dropbox.com/scl/fi/2koh1v760gqbs9dtvuaql/1791927047802.png?rlkey=b6azy8eenn47mnqobenni30ez&raw=1"
+        alt="اللاسلكي"
+        class="custom-emoji"
+      >
+      <small>اللاسلكي</small>
+    </div>
+
+    <div class="icon" tabindex="0" role="button" aria-pressed="false">
+      <img
+        src="https://www.dropbox.com/scl/fi/hu1yu25ra4vd1qw1m8h8a/file_00000000a250820ab989c2e210263da6.png?rlkey=gy39sw8dlss6uuw93ff6grjad&raw=1"
+        alt="العدالة"
+        class="custom-emoji"
+      >
+      <small>العدالة</small>
+    </div>
+
+    <div class="icon" tabindex="0" role="button" aria-pressed="false">
+      <img
+        src="https://www.dropbox.com/scl/fi/brajuaji53kbcd9kuhl93/1792638119405.png?rlkey=u83upkfbw9y5e3gsjmiwxepwm&raw=1"
+        alt="المرور"
+        class="custom-emoji"
+      >
+      <small>المرور</small>
+    </div>
+
+  </div>
+
+  <button type="button" id="goForm">التقديم للشرطة</button>
+</section>
+
+<section class="card" id="formCard">
+  <h2>نموذج التقديم للشرطة</h2>
+  <p class="description">يرجى ملء جميع الحقول المطلوبة بالمعلومات الصحيحة</p>
+
+  <form id="apply">
+    <label>اسم الشخصية</label>
+    <input name="character" required maxlength="80" placeholder="اكتب اسم شخصيتك">
+
+    <label>العمر</label>
+    <input name="age" type="number" min="13" max="99" required placeholder="أدخل عمرك">
+
+    <label>اسم المستخدم في ديسكورد</label>
+    <input name="discord" required maxlength="80" placeholder="اسم المستخدم">
+
+    <label>هل تمتلك مايكروفون؟</label>
+    <select name="mic" required>
+      <option value="">اختر الإجابة</option>
+      <option>نعم</option>
+      <option>لا</option>
+    </select>
+
+    <label>هل لديك خبرة سابقة في الشرطة؟</label>
+    <select name="experience" required>
+      <option value="">اختر الإجابة</option>
+      <option>لدي خبرة سابقة</option>
+      <option>ليس لدي خبرة</option>
+    </select>
+
+    <label>كم ساعة تستطيع التفاعل يومياً؟</label>
+    <select name="activity" required>
+      <option value="">اختر مدة التفاعل</option>
+      <option>من ساعة إلى ساعتين</option>
+      <option>من 3 إلى 4 ساعات</option>
+      <option>5 ساعات أو أكثر</option>
+    </select>
+
+    <label>لماذا ترغب بالانضمام إلى الشرطة؟</label>
+    <textarea name="reason" required minlength="10" placeholder="اكتب إجابتك هنا"></textarea>
+
+    <label>كيف تتصرف إذا خالف أحد زملائك قوانين المدينة؟</label>
+    <textarea name="scenario" required minlength="10" placeholder="اكتب إجابتك هنا"></textarea>
+
+    <label>
+      <input type="checkbox" name="agreement" required>
+      أتعهد بالالتزام بقوانين المدينة وتقديم معلومات صحيحة
+    </label>
+
+    <button type="submit">إرسال طلب التقديم</button>
+  </form>
+
+  <div id="result" role="status"></div>
+</section>
+
+</main>
+
+<footer>
+  WOLF CITY ROLEPLAY
+  <div>إدارة شرطة لوس أنجلوس</div>
+</footer>
+
+<script>
+const icons = document.querySelectorAll(".icon");
+
+function selectIcon(selected){
+  icons.forEach(icon => {
+    icon.classList.remove("selected");
+    icon.setAttribute("aria-pressed","false");
+  });
+  selected.classList.add("selected");
+  selected.setAttribute("aria-pressed","true");
+}
+
+icons.forEach(icon => {
+  icon.addEventListener("click", () => selectIcon(icon));
+  icon.addEventListener("keydown", event => {
+    if(event.key === "Enter" || event.key === " "){
+      event.preventDefault();
+      selectIcon(icon);
+    }
+  });
+});
+
+document.getElementById("goForm").addEventListener("click", () => {
+  document.getElementById("formCard").scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+});
+
+document.getElementById("apply").addEventListener("submit", event => {
+  event.preventDefault();
+
+  const data = new FormData(event.target);
+  const result = document.getElementById("result");
+  result.replaceChildren();
+
+  const title = document.createElement("h3");
+  title.textContent = "تم استلام البيانات للتجربة";
+  result.appendChild(title);
+
+  const note = document.createElement("p");
+  note.textContent = "هذه نسخة تجريبية فقط، ولم يتم إرسال الطلب إلى ديسكورد أو الإدارة.";
+  result.appendChild(note);
+
+  for(const [key,value] of data.entries()){
+    const line = document.createElement("p");
+    line.textContent = key + ": " + value;
+    result.appendChild(line);
+  }
+
+  result.classList.remove("show");
+  void result.offsetWidth;
+  result.classList.add("show");
+  result.scrollIntoView({behavior:"smooth",block:"nearest"});
+});
+</script>
+</body>
+</html>
